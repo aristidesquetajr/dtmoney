@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const Container = styled.div`
-  margin-top: 4rem;
+  margin-top: 1rem;
 
   table {
     width: 100%;
@@ -20,6 +20,10 @@ export const Container = styled.div`
 
       &:first-child {
         color: var(--text-title);
+      }
+
+      &:last-child {
+        text-align: right;
       }
 
       &.deposit {
