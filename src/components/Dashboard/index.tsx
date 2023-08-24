@@ -1,6 +1,6 @@
 import { SearchBar } from '../SearchBar'
 import { Summary } from '../Summary'
-import { TransitionsTable } from '../TransitionsTable'
+import { TransactionsTable } from '../TransactionsTable'
 import { Cointainer } from './styles'
 
 export function Dashboard() {
@@ -8,7 +8,7 @@ export function Dashboard() {
     <Cointainer>
       <Summary />
       <SearchBar />
-      <TransitionsTable />
+      <TransactionsTable />
     </Cointainer>
   )
 }

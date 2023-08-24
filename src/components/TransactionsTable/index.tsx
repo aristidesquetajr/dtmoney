@@ -1,6 +1,6 @@
 import { Container } from './styles'
 
-export function TransitionsTable() {
+export function TransactionsTable() {
   return (
     <Container>
       <table>
