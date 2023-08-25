@@ -1,3 +1,4 @@
+import { Pagination } from '../Pagination'
 import { SearchBar } from '../SearchBar'
 import { Summary } from '../Summary'
 import { TransactionsTable } from '../TransactionsTable'
@@ -9,6 +10,7 @@ export function Dashboard() {
       <Summary />
       <SearchBar />
       <TransactionsTable />
+      <Pagination />
     </Cointainer>
   )
 }

@@ -17,6 +17,10 @@ export const Container = styled.form`
     &:focus {
       outline: 1px solid var(--green);
     }
+
+    &::placeholder {
+      color: var(--placeholder);
+    }
   }
 
   button {
