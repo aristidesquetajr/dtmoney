@@ -1,10 +1,8 @@
 import Modal from 'react-modal'
-import { X } from '@phosphor-icons/react'
+import { X, ArrowCircleUp, ArrowCircleDown } from '@phosphor-icons/react'
 
-import incomeImg from '../../assets/income.svg'
-import outcomeImg from '../../assets/outcome.svg'
-
-import { Container, TransactionTypeContainer } from './styles'
+import { Container, RadioBox, TransactionTypeContainer } from './styles'
+import { useState } from 'react'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -15,6 +13,8 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const [type, setType] = useState('deposit')
+
   return (
     <Modal
       isOpen={isOpen}
@@ -40,14 +40,26 @@ export function NewTransactionModal({
         <input placeholder="Categoria" />
 
         <TransactionTypeContainer>
-          <button type="button">
-            <img src={incomeImg} alt="Entrada" />
+          <RadioBox
+            type="button"
+            onClick={() => setType('deposit')}
+            isActive={type === 'deposit'}
+            activeColor="green"
+            className={type === 'deposit' ? 'active' : ''}
+          >
+            <ArrowCircleUp size="1.5rem" />
             <span>Entrada</span>
-          </button>
-          <button type="button">
-            <img src={outcomeImg} alt="Saída" />
+          </RadioBox>
+          <RadioBox
+            type="button"
+            onClick={() => setType('withdraw')}
+            isActive={type === 'withdraw'}
+            activeColor="red"
+            className={type === 'withdraw' ? 'active' : ''}
+          >
+            <ArrowCircleDown size="1.5rem" />
             <span>Saída</span>
-          </button>
+          </RadioBox>
         </TransactionTypeContainer>
 
         <button type="submit">Cadastrar</button>

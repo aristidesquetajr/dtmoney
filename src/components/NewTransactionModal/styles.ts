@@ -58,34 +58,52 @@ export const TransactionTypeContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin: 1.5rem 0 2.5rem;
+`
 
-  button {
-    height: 3.7rem;
-    background: var(--shape-2sn);
-    border: 0;
-    border-radius: 0.38rem;
+interface RadioBoxProps {
+  isActive: boolean
+  activeColor: 'green' | 'red'
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    filter: brightness(0.9);
+const colors = {
+  green: 'var(--green)',
+  red: 'var(--red)',
+}
 
-    transition: filter 0.2s;
+export const RadioBox = styled.button<RadioBoxProps>`
+  height: 3.7rem;
+  background: ${(props) =>
+    props.isActive ? colors[props.activeColor] : 'var(--shape-2sn)'};
+  color: ${(props) => (props.isActive ? 'var(--white)' : 'var(--text-base)')};
+  border: 0;
+  border-radius: 0.38rem;
 
-    &:hover {
-      filter: brightness(1);
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: ${(props) => (props.isActive ? 'brightness(1)' : 'brightness(0.95)')};
 
-    img {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
+  transition: all 0.2s;
 
-    span {
-      display: inline-block;
-      margin-left: 1rem;
-      font-size: 1rem;
-      color: var(--text-base);
-    }
+  &:hover {
+    filter: brightness(1);
+  }
+
+  &:first-child svg {
+    color: #015f43;
+  }
+
+  &:last-child svg {
+    color: #aa2834;
+  }
+
+  &.active svg {
+    color: #fff;
+  }
+
+  span {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 1rem;
   }
 `
