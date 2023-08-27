@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import { X, ArrowCircleUp, ArrowCircleDown } from '@phosphor-icons/react'
 
 import { Container, RadioBox, TransactionTypeContainer } from './styles'
+import { api } from '../../services/api'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -21,7 +22,9 @@ export function NewTransactionModal({
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault()
 
-    console.log({ description, price, category, type })
+    const data = { description, price, category, type }
+
+    api.post('/transactions', data)
   }
 
   return (
