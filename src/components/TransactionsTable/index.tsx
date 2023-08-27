@@ -10,7 +10,7 @@ export function TransactionsTable() {
   return (
     <Container>
       <table>
-        <thead>
+        <thead aria-hidden="true">
           <tr>
             <th>Titulo</th>
             <th>Preço</th>
