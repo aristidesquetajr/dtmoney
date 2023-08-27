@@ -1,5 +1,7 @@
 import Modal from 'react-modal'
 
+import { X } from '@phosphor-icons/react'
+
 import { Container } from './styles'
 
 interface NewTransactionModalProps {
@@ -12,10 +14,31 @@ export function NewTransactionModal({
   onRequestClose,
 }: NewTransactionModalProps) {
   return (
-    <Container>
-      <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
-        <h2>Cadastrar transação</h2>
-      </Modal>
-    </Container>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      overlayClassName="react-modal-overlay"
+      className="react-modal-content"
+    >
+      <Container>
+        <button
+          type="button"
+          onClick={onRequestClose}
+          className="react-modal-close"
+        >
+          <X size="1.5rem" />
+        </button>
+
+        <h2>Nova transação</h2>
+
+        <input placeholder="Descrição" />
+
+        <input type="number" placeholder="Preço" />
+
+        <input placeholder="Categoria" />
+
+        <button type="submit">Cadastrar</button>
+      </Container>
+    </Modal>
   )
 }
