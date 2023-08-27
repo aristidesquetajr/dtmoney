@@ -1,8 +1,10 @@
 import Modal from 'react-modal'
-
 import { X } from '@phosphor-icons/react'
 
-import { Container } from './styles'
+import incomeImg from '../../assets/income.svg'
+import outcomeImg from '../../assets/outcome.svg'
+
+import { Container, TransactionTypeContainer } from './styles'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -36,6 +38,17 @@ export function NewTransactionModal({
         <input type="number" placeholder="Preço" />
 
         <input placeholder="Categoria" />
+
+        <TransactionTypeContainer>
+          <button type="button">
+            <img src={incomeImg} alt="Entrada" />
+            <span>Entrada</span>
+          </button>
+          <button type="button">
+            <img src={outcomeImg} alt="Saída" />
+            <span>Saída</span>
+          </button>
+        </TransactionTypeContainer>
 
         <button type="submit">Cadastrar</button>
       </Container>

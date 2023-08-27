@@ -43,13 +43,49 @@ export const Container = styled.form`
     border: 0;
     font-size: 1rem;
     line-height: 1.6rem;
-    margin-top: 1.5rem;
     font-weight: 700;
 
     transition: filter 0.2s;
 
     &:hover {
       filter: brightness(0.9);
+    }
+  }
+`
+
+export const TransactionTypeContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+
+  button {
+    height: 3.7rem;
+    background: var(--shape-2sn);
+    border: 0;
+    border-radius: 0.38rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: brightness(0.9);
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(1);
+    }
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    span {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+      color: var(--text-base);
     }
   }
 `
