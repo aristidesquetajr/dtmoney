@@ -1,8 +1,8 @@
+import { FormEvent, useState } from 'react'
 import Modal from 'react-modal'
 import { X, ArrowCircleUp, ArrowCircleDown } from '@phosphor-icons/react'
 
 import { Container, RadioBox, TransactionTypeContainer } from './styles'
-import { useState } from 'react'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -13,7 +13,16 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const [description, setDecription] = useState('')
+  const [price, setPrice] = useState(0)
+  const [category, setCategory] = useState('')
   const [type, setType] = useState('deposit')
+
+  function handleCreateNewTransaction(event: FormEvent) {
+    event.preventDefault()
+
+    console.log({ description, price, category, type })
+  }
 
   return (
     <Modal
@@ -22,7 +31,7 @@ export function NewTransactionModal({
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <Container>
+      <Container onSubmit={handleCreateNewTransaction}>
         <button
           type="button"
           onClick={onRequestClose}
@@ -33,11 +42,24 @@ export function NewTransactionModal({
 
         <h2>Nova transação</h2>
 
-        <input placeholder="Descrição" />
+        <input
+          placeholder="Descrição"
+          value={description}
+          onChange={({ target }) => setDecription(target.value)}
+        />
 
-        <input type="number" placeholder="Preço" />
+        <input
+          type="number"
+          placeholder="Preço"
+          value={price}
+          onChange={({ target }) => setPrice(Number(target.value))}
+        />
 
-        <input placeholder="Categoria" />
+        <input
+          placeholder="Categoria"
+          value={category}
+          onChange={({ target }) => setCategory(target.value)}
+        />
 
         <TransactionTypeContainer>
           <RadioBox
