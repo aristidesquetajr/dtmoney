@@ -1,9 +1,9 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import Modal from 'react-modal'
 import { X, ArrowCircleUp, ArrowCircleDown } from '@phosphor-icons/react'
+import { TransactionsContext } from '../../TransactionsContext'
 
 import { Container, RadioBox, TransactionTypeContainer } from './styles'
-import { api } from '../../services/api'
 
 interface NewTransactionModalProps {
   isOpen: boolean
@@ -14,17 +14,24 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
-  const [description, setDecription] = useState('')
-  const [price, setPrice] = useState(0)
+  const { createTransaction } = useContext(TransactionsContext)
+
+  const [description, setDescription] = useState('')
+  const [amount, setAmount] = useState(0)
   const [category, setCategory] = useState('')
   const [type, setType] = useState('deposit')
 
-  function handleCreateNewTransaction(event: FormEvent) {
+  async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault()
 
-    const data = { description, price, category, type }
+    await createTransaction({ description, amount, category, type })
 
-    api.post('/transactions', data)
+    setDescription('')
+    setAmount(0)
+    setCategory('')
+    setType('deposit')
+
+    onRequestClose()
   }
 
   return (
@@ -48,14 +55,14 @@ export function NewTransactionModal({
         <input
           placeholder="Descrição"
           value={description}
-          onChange={({ target }) => setDecription(target.value)}
+          onChange={({ target }) => setDescription(target.value)}
         />
 
         <input
           type="number"
           placeholder="Preço"
-          value={price}
-          onChange={({ target }) => setPrice(Number(target.value))}
+          value={amount}
+          onChange={({ target }) => setAmount(Number(target.value))}
         />
 
         <input
