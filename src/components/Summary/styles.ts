@@ -25,6 +25,7 @@ export const Container = styled.div`
       font-weight: 500;
       line-height: 3rem;
       color: var(--white);
+      line-break: anywhere;
     }
 
     &:last-child {
