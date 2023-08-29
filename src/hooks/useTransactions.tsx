@@ -25,6 +25,7 @@ interface TransactionsProviderProps {
 interface TransactionsContextData {
   transactions: Transaction[]
   createTransaction: (transaction: TransactionInput) => Promise<void>
+  searchTransactions: (description: string) => Promise<void>
 }
 
 const TransactionsContext = createContext<TransactionsContextData>(
@@ -52,8 +53,26 @@ export const TransactionsProvider = ({
     setTransactions([...transactions, transaction])
   }
 
+  async function searchTransactions(description: string) {
+    const transactions = (await (
+      await api.get('/transactions')
+    ).data.transactions) as Transaction[]
+
+    setTransactions(() => {
+      const newTransactions = transactions.filter((transaction) =>
+        transaction.description
+          .toLowerCase()
+          .includes(description.toLowerCase()),
+      )
+
+      return newTransactions
+    })
+  }
+
   return (
-    <TransactionsContext.Provider value={{ transactions, createTransaction }}>
+    <TransactionsContext.Provider
+      value={{ transactions, createTransaction, searchTransactions }}
+    >
       {children}
     </TransactionsContext.Provider>
   )
